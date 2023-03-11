@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import animation
-import pandas as pd
 import serial
 # import threading
 # import time
@@ -39,7 +38,7 @@ ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
 
-ser = serial.Serial("COM5", baudrate=115200)
+ser = serial.Serial("COM4", baudrate=115200)
 ser.flushInput()
 
 # df = pd.DataFrame({"Root Angle": [],
@@ -57,9 +56,9 @@ with open("Angle_Three_sensor.csv", "a") as f:
 
     while True:
         def move_arrow(pos1, direction1, direction2, direction3, direction4, direction5,
-                       trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4, trunk_plt5,
-                       length_trunk,
-                       ):
+                        trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4, trunk_plt5,
+                        length_trunk,
+                        ):
             # Converting directional inputs into arrays
             pos1 = np.asarray(pos1)
             direction1 = np.asarray(direction1)
@@ -122,8 +121,8 @@ with open("Angle_Three_sensor.csv", "a") as f:
             dir_shift4 = np.array([float(data[11]) - error3[0], float(data[10]) - error3[1], float(data[9]) - error3[2]])
             dir_shift5 = np.array([float(data[14]) - error3[0], float(data[13]) - error3[1], float(data[12]) - error3[2]])
             move_arrow(pos1,dir1 + dir_shift1,dir2 + dir_shift2,dir3 + dir_shift3,dir4 + dir_shift4,dir5 + dir_shift5,
-                       trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4, trunk_plt5,
-                       length_trunk)
+                        trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4, trunk_plt5,
+                        length_trunk)
             return [trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4, trunk_plt5,]
 
 
