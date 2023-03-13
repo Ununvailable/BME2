@@ -3,8 +3,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import animation
 import pandas as pd
-import serial
 
+error1 = np.array([12.52-9.8, -0.5, -1.05])
+error2 = np.array([10.34-9.8, -0.56, -1.5])
+error3 = np.array([10.05-9.8, -0.71, -0.14])
+error4 = np.array([9.39-9.8, -0.35, -1.65])
+error5 = np.array([15.12-9.8, 1.96, -0.68])
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
 
@@ -13,31 +17,28 @@ dir1 = [0, 0, 0]
 dir2 = [0, 0, 0]
 dir3 = [0, 0, 0]
 dir4 = [0, 0, 0]
-# dir5 = [0, 0, 0]
+dir5 = [0, 0, 0]
 
-length_trunk = [1.5, 1.6, 2, 2.2, 1]
+length_trunk = [2, 2, 2, 2, 2]
 trunk_plt1 = ax.plot3D([], [], [], c='g', linewidth=3)[0]  # c='aquamarine'
 trunk_plt2 = ax.plot3D([], [], [], c='r', linewidth=3)[0]  # c='bisque'
 trunk_plt3 = ax.plot3D([], [], [], c='g', linewidth=3)[0]  # c='antiquewhite'
-trunk_plt4 = ax.plot3D([], [], [], c='r', linewidth=3)[0]  # c='beige'
-# trunk_plt5 = ax.plot3D([], [], [], c='beige', linewidth=3)[0]              # c='aqua'
-line_plt = ax.plot3D([], [], [], c='k', linestyle='-.', linewidth=0.7)[0]  # cyan
+trunk_plt4 = ax.plot3D([], [], [], c='r', linewidth=3)[0]  # c='bisque'
+trunk_plt5 = ax.plot3D([], [], [], c='g', linewidth=3)[0]  # c='antiquewhite'
 
-ax.set_xlim(-8, 8)
-ax.set_ylim(-8, 8)
-ax.set_zlim(0, 8)
+ax.set_xlim(-10, 10)
+ax.set_ylim(-10, 10)
+ax.set_zlim(-10, 10)
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
 
-fileName = "Luong.xlsx"
-df = pd.read_excel(fileName)
+fileName = "Angle_Three_sensor.csv"
+df = pd.read_csv(fileName)
 
 
 def move_arrow(pos1, direction1, direction2, direction3, direction4,
-               trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4,
-               length_trunk,
-               ):
+                trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4,length_trunk,):
     # Converting directional inputs into arrays
     pos1 = np.asarray(pos1)
     direction1 = np.asarray(direction1)
@@ -108,8 +109,8 @@ def sample_frame(i):
     # print(ang)
 
     move_arrow(pos1, dir1 + dir_shift1, dir2 + dir_shift2, dir3 + dir_shift3, dir4 + dir_shift4,
-               trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4,
-               length_trunk)
+                trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4,
+                length_trunk)
     return [trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4, line_plt]
 
 

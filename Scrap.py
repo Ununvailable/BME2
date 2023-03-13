@@ -1,11 +1,15 @@
+import json
+import csv
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import animation
 import serial
 # import threading
 # import time
-import csv
 # from datetime import datetime
+
+import firebase_admin
+from firebase_admin import credentials, db
 
 # Demo 3 lol
 
@@ -38,6 +42,7 @@ ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
 
+# using os module to avoid hardcode
 ser = serial.Serial("COM4", baudrate=115200)
 ser.flushInput()
 
@@ -45,14 +50,13 @@ ser.flushInput()
 #                    "Angle 1/2": [],
 #                    "Angle 2/3": []})
 
-with open("Angle_Three_sensor.csv", "a") as f:
-    label = []
-    writer = csv.writer(f)
-    print("Start reading")
-    for i in range(5):
-        i += 1
-        label.append(i)
-    writer.writerow(label)
+with open("angle_three_sensor.csv", "a") as file:
+
+    # write to csv file
+    # fieldnames = ["Ang1", "Ang2", "Ang3", "Ang4", "Ang5"]
+    writer = csv.DictWriter(file, fieldnames = ["ang1", "ang2", "ang3", "ang4", "ang5"])
+    # write label
+    writer.writeheader()
 
     while True:
         def move_arrow(pos1, direction1, direction2, direction3, direction4, direction5,
@@ -93,7 +97,9 @@ with open("Angle_Three_sensor.csv", "a") as f:
             ang4 = round(np.rad2deg(np.arccos(np.clip(np.dot(direction4, direction3), -1.0, 1.0))), 2)
             ang5 = round(np.rad2deg(np.arccos(np.clip(np.dot(direction5, direction4), -1.0, 1.0))), 2)
             #print("Root angle: ", ang1, "Angle 1/2", ang2, "Ang 2/3", ang3, "Ang 3/4", ang4, "Ang 4/5", ang5)
-            writer.writerow([ang1, ang2, ang3, ang4, ang5])
+
+            # read data from sensor and write to csv file
+            writer.writerow({"ang1":ang1, "ang2":ang2, "ang3":ang3, "ang4":ang4, "ang5":ang5})
             # df.loc[len(df)] = [ang1, ang2, ang3]
 
             trunk_plt1.set_data([pos1[0], end1[0]], [pos1[1], end1[1]])  # Set data
