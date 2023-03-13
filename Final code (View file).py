@@ -134,6 +134,3 @@ def sample_frame(i):
 ani = animation.FuncAnimation(fig, sample_frame, frames=None, interval=10, repeat=True, blit=True)
 
 plt.show()
-
-# except:
-#     print("Keyboard Interupt")
