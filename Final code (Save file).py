@@ -36,7 +36,7 @@ ax.set_zlabel('Z')
 ser = serial.Serial("COM5", baudrate=115200)
 ser.flushInput()
 
-with open("Angle_Three_sensor.csv", "a") as f:
+with open("angle_three_sensor.csv", "a") as f:
     label = ['Angle1', 'Angle1/2', 'Angle2/3', 'Angle3/4', 'Angle4/5',
              'X1', 'Y1', 'Z1',
              'X2', 'Y2', 'Z2',
