@@ -25,10 +25,7 @@ trunk_plt2 = ax.plot3D([], [], [], c='r', linewidth=3)[0]  # c='bisque'
 trunk_plt3 = ax.plot3D([], [], [], c='g', linewidth=3)[0]  # c='antiquewhite'
 trunk_plt4 = ax.plot3D([], [], [], c='r', linewidth=3)[0]  # c='bisque'
 trunk_plt5 = ax.plot3D([], [], [], c='g', linewidth=3)[0]  # c='antiquewhite'
-<<<<<<< HEAD
-=======
 line_plt = ax.plot3D([], [], [], c='k', linestyle='-.', linewidth=0.7)[0]  # cyan
->>>>>>> 495fabf4307f1aa6a62ca17bb4b7f1aabfe2b835
 
 ax.set_xlim(-10, 10)
 ax.set_ylim(-10, 10)
@@ -37,27 +34,14 @@ ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
 
-fileName = "Angle_Three_sensor.csv"
+fileName = "angle_three_sensor.csv"
 df = pd.read_csv(fileName)
-<<<<<<< HEAD
-
-
-def move_arrow(pos1, direction1, direction2, direction3, direction4,
-                trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4,length_trunk,):
-    # Converting directional inputs into arrays
-    pos1 = np.asarray(pos1)
-    direction1 = np.asarray(direction1)
-    direction2 = np.asarray(direction2)
-    direction3 = np.asarray(direction3)
-    direction4 = np.asarray(direction4)
-    # direction5 = np.asarray(direction5)
-=======
 
 try:
     def move_arrow(pos1, direction1, direction2, direction3, direction4, direction5,
-                   trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4, trunk_plt5,
-                   length_trunk,
-                   ):
+                    trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4, trunk_plt5,
+                    length_trunk,
+                    ):
         # Converting directional inputs into arrays
         pos1 = np.asarray(pos1)
         direction1 = np.asarray(direction1)
@@ -123,11 +107,10 @@ try:
         # ang = np.rad2deg(np.arccos(np.clip(np.dot(direction3, direction4), -1.0, 1.0)))
         # annotation(1, 1, 2, ang)
         # print(ang)
->>>>>>> 495fabf4307f1aa6a62ca17bb4b7f1aabfe2b835
 
         move_arrow(pos1, dir1 + dir_shift1, dir2 + dir_shift2, dir3 + dir_shift3, dir4 + dir_shift4, dir5 + dir_shift5,
-                   trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4, trunk_plt5,
-                   length_trunk)
+                    trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4, trunk_plt5,
+                    length_trunk)
         return [trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4, trunk_plt5, line_plt]
 
 
@@ -135,17 +118,5 @@ try:
 
     plt.show()
 
-<<<<<<< HEAD
-    move_arrow(pos1, dir1 + dir_shift1, dir2 + dir_shift2, dir3 + dir_shift3, dir4 + dir_shift4,
-                trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4,
-                length_trunk)
-    return [trunk_plt1, trunk_plt2, trunk_plt3, trunk_plt4, line_plt]
-
-
-ani = animation.FuncAnimation(fig, sample_frame, 250, interval=400, repeat=True, blit=True)
-
-plt.show()
-=======
 except:
     print("Keyboard Interupt")
->>>>>>> 495fabf4307f1aa6a62ca17bb4b7f1aabfe2b835
