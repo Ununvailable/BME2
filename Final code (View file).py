@@ -34,7 +34,7 @@ ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
 
-fileName = "Angle_Three_sensor.csv"
+fileName = "angle_three_sensor.csv"
 df = pd.read_csv(fileName)
 
 try:
